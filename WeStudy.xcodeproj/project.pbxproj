@@ -8,19 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		CC1E659528FABEAA000061A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E659428FABEAA000061A8 /* AppDelegate.swift */; };
-		CC1E659728FABEAA000061A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E659628FABEAA000061A8 /* ViewController.swift */; };
+		CC1E659728FABEAA000061A8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E659628FABEAA000061A8 /* LoginViewController.swift */; };
 		CC1E659928FABEAC000061A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC1E659828FABEAC000061A8 /* Assets.xcassets */; };
 		CC1E659C28FABEAC000061A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC1E659A28FABEAC000061A8 /* Main.storyboard */; };
+		CC1E65A628FABF36000061A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E65A528FABF36000061A8 /* Constants.swift */; };
+		CC422DE428FB6DB40028A376 /* Keylogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC3DE3C28FB611400AC124C /* Keylogger.swift */; };
+		CC422DE528FB6DB40028A376 /* CallBackFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC3DE3B28FB611400AC124C /* CallBackFunctions.swift */; };
+		CC64C63828FB72A500BF20ED /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64C63728FB72A500BF20ED /* MainViewController.swift */; };
+		CCC3DE3828FB367100AC124C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC3DE3728FB367100AC124C /* Utils.swift */; };
+		CCC3DE4528FB647A00AC124C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC3DE4428FB647A00AC124C /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CC1E659128FABEAA000061A8 /* Room.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Room.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC1E659128FABEAA000061A8 /* WeStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC1E659428FABEAA000061A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CC1E659628FABEAA000061A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CC1E659628FABEAA000061A8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CC1E659828FABEAC000061A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC1E659B28FABEAC000061A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC1E659D28FABEAC000061A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC1E659E28FABEAC000061A8 /* Room.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Room.entitlements; sourceTree = "<group>"; };
+		CC1E65A528FABF36000061A8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CC64C63728FB72A500BF20ED /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CCC3DE3728FB367100AC124C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		CCC3DE3B28FB611400AC124C /* CallBackFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallBackFunctions.swift; sourceTree = "<group>"; };
+		CCC3DE3C28FB611400AC124C /* Keylogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keylogger.swift; sourceTree = "<group>"; };
+		CCC3DE4428FB647A00AC124C /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCC3DE4528FB647A00AC124C /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,38 +50,60 @@
 		CC1E658828FABEAA000061A8 = {
 			isa = PBXGroup;
 			children = (
-				CC1E659328FABEAA000061A8 /* Room */,
+				CC1E659328FABEAA000061A8 /* WeStudy */,
 				CC1E659228FABEAA000061A8 /* Products */,
+				CCC3DE4328FB647A00AC124C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		CC1E659228FABEAA000061A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CC1E659128FABEAA000061A8 /* Room.app */,
+				CC1E659128FABEAA000061A8 /* WeStudy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CC1E659328FABEAA000061A8 /* Room */ = {
+		CC1E659328FABEAA000061A8 /* WeStudy */ = {
 			isa = PBXGroup;
 			children = (
+				CCC3DE4828FB64CC00AC124C /* Key Logger */,
 				CC1E659428FABEAA000061A8 /* AppDelegate.swift */,
-				CC1E659628FABEAA000061A8 /* ViewController.swift */,
+				CC1E65A528FABF36000061A8 /* Constants.swift */,
+				CC1E659628FABEAA000061A8 /* LoginViewController.swift */,
+				CC64C63728FB72A500BF20ED /* MainViewController.swift */,
 				CC1E659828FABEAC000061A8 /* Assets.xcassets */,
 				CC1E659A28FABEAC000061A8 /* Main.storyboard */,
 				CC1E659D28FABEAC000061A8 /* Info.plist */,
 				CC1E659E28FABEAC000061A8 /* Room.entitlements */,
+				CCC3DE3728FB367100AC124C /* Utils.swift */,
 			);
-			path = Room;
+			path = WeStudy;
+			sourceTree = "<group>";
+		};
+		CCC3DE4328FB647A00AC124C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCC3DE4428FB647A00AC124C /* IOKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCC3DE4828FB64CC00AC124C /* Key Logger */ = {
+			isa = PBXGroup;
+			children = (
+				CCC3DE3B28FB611400AC124C /* CallBackFunctions.swift */,
+				CCC3DE3C28FB611400AC124C /* Keylogger.swift */,
+			);
+			path = "Key Logger";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CC1E659028FABEAA000061A8 /* Room */ = {
+		CC1E659028FABEAA000061A8 /* WeStudy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CC1E65A128FABEAC000061A8 /* Build configuration list for PBXNativeTarget "Room" */;
+			buildConfigurationList = CC1E65A128FABEAC000061A8 /* Build configuration list for PBXNativeTarget "WeStudy" */;
 			buildPhases = (
 				CC1E658D28FABEAA000061A8 /* Sources */,
 				CC1E658E28FABEAA000061A8 /* Frameworks */,
@@ -78,9 +113,9 @@
 			);
 			dependencies = (
 			);
-			name = Room;
+			name = WeStudy;
 			productName = Room;
-			productReference = CC1E659128FABEAA000061A8 /* Room.app */;
+			productReference = CC1E659128FABEAA000061A8 /* WeStudy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -97,7 +132,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CC1E658C28FABEAA000061A8 /* Build configuration list for PBXProject "Room" */;
+			buildConfigurationList = CC1E658C28FABEAA000061A8 /* Build configuration list for PBXProject "WeStudy" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,7 +145,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CC1E659028FABEAA000061A8 /* Room */,
+				CC1E659028FABEAA000061A8 /* WeStudy */,
 			);
 		};
 /* End PBXProject section */
@@ -132,8 +167,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC1E659728FABEAA000061A8 /* ViewController.swift in Sources */,
+				CC64C63828FB72A500BF20ED /* MainViewController.swift in Sources */,
+				CC422DE528FB6DB40028A376 /* CallBackFunctions.swift in Sources */,
+				CC422DE428FB6DB40028A376 /* Keylogger.swift in Sources */,
+				CC1E659728FABEAA000061A8 /* LoginViewController.swift in Sources */,
 				CC1E659528FABEAA000061A8 /* AppDelegate.swift in Sources */,
+				CC1E65A628FABF36000061A8 /* Constants.swift in Sources */,
+				CCC3DE3828FB367100AC124C /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,18 +311,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Room/Room.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WeStudy/Room.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = US8T2D45H8;
+				DEVELOPMENT_TEAM = GR353CPP2V;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Room/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WeStudy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.room.Room;
+				PRODUCT_BUNDLE_IDENTIFIER = com.westudy.westudy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -292,18 +334,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Room/Room.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WeStudy/Room.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = US8T2D45H8;
+				DEVELOPMENT_TEAM = GR353CPP2V;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Room/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WeStudy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.room.Room;
+				PRODUCT_BUNDLE_IDENTIFIER = com.westudy.westudy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -311,7 +355,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CC1E658C28FABEAA000061A8 /* Build configuration list for PBXProject "Room" */ = {
+		CC1E658C28FABEAA000061A8 /* Build configuration list for PBXProject "WeStudy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC1E659F28FABEAC000061A8 /* Debug */,
@@ -320,7 +364,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CC1E65A128FABEAC000061A8 /* Build configuration list for PBXNativeTarget "Room" */ = {
+		CC1E65A128FABEAC000061A8 /* Build configuration list for PBXNativeTarget "WeStudy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC1E65A228FABEAC000061A8 /* Debug */,
