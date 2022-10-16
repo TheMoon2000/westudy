@@ -6,12 +6,14 @@
 //
 
 import Cocoa
+import CommonCrypto
 import IOKit.hid
 
 let API_BASE = "http://35.162.191.139/api"
 
 enum Colors {
     static let theme = NSColor(named: "Theme")!
+    static let themeLight = NSColor(named: "Theme-light")!
 }
 
 func grantPermissions() {
@@ -94,7 +96,7 @@ class KeyPressManager {
 }
 
 struct DataPoint: Codable, CustomStringConvertible {
-    let timestamp: Date
+    let timestamp: Int
     let mouseTouched: Bool
     let keypressCount: Int
     let activeAppName: String
@@ -105,5 +107,22 @@ struct DataPoint: Codable, CustomStringConvertible {
     
     var description: String {
         return String(data: try! JSONEncoder().encode(self), encoding: .utf8)!
+    }
+}
+
+struct LoginCredentials: Codable {
+    let username: String
+    let password_hash: String
+}
+
+extension String {
+    func sha1() -> String {
+        let data = Data(self.utf8)
+        var digest = [UInt8](repeating: 0, count:Int(CC_SHA1_DIGEST_LENGTH))
+        data.withUnsafeBytes {
+            _ = CC_SHA1($0.baseAddress, CC_LONG(data.count), &digest)
+        }
+        let hexBytes = digest.map { String(format: "%02hhx", $0) }
+        return hexBytes.joined()
     }
 }

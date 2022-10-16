@@ -8,12 +8,23 @@
 import Foundation
 import Cocoa
 import IOKit.hid
+import SwiftyJSON
 
 let PERIOD = 5.0
 
 class MainViewController: NSViewController {
 
+    @IBOutlet weak var spinner: NSProgressIndicator!
+    @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var userStatus: NSTextField!
+    @IBOutlet weak var timer: NSTextField!
+    @IBOutlet weak var topBG: NSView!
+    @IBOutlet weak var bottomBG: NSView!
+    
     var k: Keylogger!
+    
+    var roomCode: String!
+    var friendsData = [(key: String, value: JSON)]()
     
     var history = [DataPoint]()
     var keypressCount = 0
@@ -27,6 +38,8 @@ class MainViewController: NSViewController {
     /// Whether the mouse is interacted with in the last `PERIOD` seconds.
     var mouseTouched = false
     
+    var currentTime = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -37,6 +50,30 @@ class MainViewController: NSViewController {
         Timer.scheduledTimer(withTimeInterval: PERIOD, repeats: true) { timer in
             self.recordHistoryAndUpload()
         }
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        let nib = NSNib(nibNamed: NSNib.Name("FriendCell"), bundle: .main)
+        tableView.register(nib, forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cell"))
+        tableView.selectionHighlightStyle = .none
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.fetch()
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            if self.userStatus.stringValue == "Learning" || self.userStatus.stringValue == "Working" {
+                self.currentTime += 1
+            }
+            self.timer.stringValue = String(format: "%02d:%02d:%02d", self.currentTime / 3600, (self.currentTime % 3600) / 60, self.currentTime % 60)
+        }
+        
+        view.wantsLayer = true
+        
+        topBG.wantsLayer = true
+        topBG.layer?.backgroundColor = Colors.themeLight.cgColor
+        
+        bottomBG.wantsLayer = true
+        bottomBG.layer?.backgroundColor = Colors.themeLight.cgColor
     }
     
     func setupMouseListener() {
@@ -144,7 +181,7 @@ class MainViewController: NSViewController {
             break
         }
         
-        let datapoint = DataPoint(timestamp: Date(),
+        let datapoint = DataPoint(timestamp: Int(Date().timeIntervalSince1970),
                                   mouseTouched: mouseTouched,
                                   keypressCount: keypressCount,
                                   activeAppName: activeAppName,
@@ -159,18 +196,42 @@ class MainViewController: NSViewController {
         
         var urlRequest = URLRequest(url: URL.with(API_Name: "/data/update_status")!)
         urlRequest.httpBody = try! JSONEncoder().encode(datapoint)
-        urlRequest.setValue("", forHTTPHeaderField: "token")
+        urlRequest.setValue(LocalStorage.current.token!, forHTTPHeaderField: "token")
         urlRequest.httpMethod = "POST"
         
         let task = URLSession.shared.dataTask(with: urlRequest) {
             data, response, error in
             
             guard error == nil, let data = data else {
-                print(error)
+                print(error!)
                 return
             }
             
-            print(String(data: data, encoding: .utf8))
+            let json = JSON.init(parseJSON: String(data: data, encoding: .utf8)!)
+            DispatchQueue.main.async {
+                self.userStatus.stringValue = json["status"].string ?? "Unknown"
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func fetch() {
+        var urlRequest = URLRequest(url: URL.with(API_Name: "/data/get_status")!)
+        urlRequest.setValue(LocalStorage.current.token!, forHTTPHeaderField: "token")
+        let task = URLSession.shared.dataTask(with: urlRequest) {
+            data, response, error in
+            
+            guard error == nil, let data = data else {
+                print(error!)
+                return
+            }
+            
+            let json = JSON(parseJSON: String(data: data, encoding: .utf8)!)["data"].dictionaryValue
+            self.friendsData = json.sorted(by: { (a, b) in a.key < b.key })
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
         
         task.resume()
@@ -192,6 +253,25 @@ class MainViewController: NSViewController {
         }
         
         
+    }
+    
+}
+
+
+extension MainViewController: NSTableViewDelegate, NSTableViewDataSource {
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return self.friendsData.count
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cell"), owner: self) as! FriendCell
+        cell.friendName.stringValue = friendsData[row].key
+        cell.status.stringValue = friendsData[row].value.array?.last?["status"].string ?? "Unknown"
+        return cell
+    }
+    
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 56
     }
     
 }
