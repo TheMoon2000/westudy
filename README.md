@@ -1,0 +1,17 @@
+## Inspiration
+Have you ever suffered from procrastination and distraction but is just too lazy to walk to a library or book a study room?  This is exactly what happens to us every day working alone in our bedrooms. We used to think that Forest is a good solution to help us not get distracted by our phones, however,  we can just go play a game on the computer or play some fidget toys to continue procrastinating. After reflecting on the incentive mechanism for productivity, we realize that the essence of a productivity tool is not blocking you or penalizing you for chilling, but rewarding you for being productive. Additionally, we all agree that it is more productive to work in a small group or a quiet library. Therefore, we created WeStudy, an app that monitors your current tasks, a virtual room for you and your friend, and a productivity coach that help you be more productive.
+
+## What it does
+WeStudy creates the perfect productivity environment right on your computer for you. We use social psychology and peer influence to help you focus and stay productive. Not only that you and your friend can see if each other is hacking, working, or chilling, but we also build your productivity score and history to help you understand the pattern of your attention span. With raw data collected from you mouse, keyboard, and current tasks information, we fine-tuned a NLP Large Langue Model pipeline to categorize your status as productive and not productive and further categorize them into status such as hacking, working, learning, chilling, etc. WeStudy collects your status data point every 10 seconds and updates your status for your friend to see. WeStudy also records your total productivity in minutes and provides a leaderboard for you to show off how productive you have been among your friends or organization in the past day, week, month, or year. WeStudy also uses your datapoint to plot your attention span curve for the day.
+
+## How we built it
+WeStudy is built with MySQL, FastAPI, Swift, Xcode, Python, NLP, Co:Here API, AWS, and EC2. We grasp the power of machine learning, natural language processing, and data processing and apply them to better our lives. We started by varying each technology work on its own and that each step of WeStudy from collecting raw input, classifying and labeling status, user interface, and server functions smoothly. Then we just combine everything together to make this app!
+
+## Challenges and Accomplishment
+The hardest challenge we ran into is how to classify the current status for user. How do we differentiate between working and chilling? How do we know you are watching a lecture or a funny meme video? How do we know if you just opened VSCode and left your computer to get a drink? With hours of fine-tuning our machine-learning model and thinking about the logic behind the classifier, we were able to build an app that is **SMART** and **Light Weight** that can track your actual productivity all the time in the background.
+
+## What's next for WeStudy
+We plan on creating a leaderboard for organizations such as schools (e.g. UC Berkeley, Stanford) so that each individual can contribute to the total productivity of the organization. We believe this school spirit will further promote your productivity (as you contribute to beating Stanford!)
+
+## Demo video
+https://drive.google.com/file/d/180Y4owBO7BfYDGrtgcHi6vP8df_Dw1H5/view?usp=sharing
